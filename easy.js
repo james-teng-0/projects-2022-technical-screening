@@ -31,8 +31,26 @@ var assert = require("assert")
 // Explanation: Empty array...
 
 const altNumbers = (numArray) => {
-    // TODO: COMPLETE THIS FUNCTION
-    return [];
+    // filter for positive numbers
+    let firstArray = numArray.filter(x => x >= 0); 
+    // filter for negative numbers
+    let secondArray = numArray.filter(x => x < 0); 
+
+    // if negative array is larger than positive array, swap the arrays
+    if (firstArray.length < secondArray.length) {
+        const temp = secondArray;
+        secondArray = firstArray;
+        firstArray = temp;
+    } 
+
+    let result = [];
+    let length = Math.max(firstArray.length, secondArray.length);
+    // alternate between pos/neg array and push onto result array
+    for(let i = 0; i < length; i++) {
+        if (i < firstArray.length) result.push(firstArray[i]);
+        if (i < secondArray.length) result.push(secondArray[i]);
+    }
+    return result;
 }
 
 module.exports = { altNumbers } // Do not modify this line
